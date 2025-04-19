@@ -1,6 +1,6 @@
-package com.davido.DavidoBlog.model;
+package com.davido.DavidoBlog.dto;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.davido.DavidoBlog.model.Category;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,16 +11,13 @@ import java.util.List;
 
 @NoArgsConstructor
 @Data
-@Entity(name = "blog_detail")
-public class BlogDetail {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long blog_id;
+public class BlogDTO {
+
+
     private String title;
     private String author;
 
-    @Enumerated(value = EnumType.STRING)
     private Category category;
     @Lob
     private String content;
@@ -28,10 +25,5 @@ public class BlogDetail {
     private List<String> tags;
     private String imageUrl;
     private Date publishedDate;
-
-
-    @OneToMany(mappedBy = "blog")
-    @JsonManagedReference
-    private List<Comments> comments;
 
 }

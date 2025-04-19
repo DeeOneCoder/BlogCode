@@ -16,7 +16,12 @@ public class BlogService {
     private BlogRepository blogRepository;
 
     public BlogDetail postBlog(BlogDetail blog){
+        blog.setPublishedDate(new Date());
         return blogRepository.save(blog);
+    }
+
+    public List<BlogDetail> allBlogs(){
+        return blogRepository.findAll();
     }
     public BlogDetail getBlogById(Long id){
         return blogRepository.findById(id).isPresent() ? blogRepository.findById(id).get() : null;

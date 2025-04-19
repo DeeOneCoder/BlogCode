@@ -22,7 +22,15 @@ public class CommentService {
         return commentRepository.findByUser(user).isPresent() ? commentRepository.findByUser(user).get() : null;
     }
 
-    List<Comments> findByBlog(BlogDetail blog){
+    public List<Comments> findByBlog(BlogDetail blog){
         return commentRepository.findByBlog(blog).isPresent() ? commentRepository.findByBlog(blog).get() : null;
+    }
+
+    public Comments postComment(Comments comments){
+        return commentRepository.save(comments);
+    }
+
+    public List<Comments> getAllComments(){
+        return commentRepository.findAll();
     }
 }

@@ -1,5 +1,6 @@
 package com.davido.DavidoBlog.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -19,12 +20,11 @@ public class Comments {
     private String user;
 
 
-    @Lob
-    @NotBlank(message = "Comment can not be blank")
     private String comment;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "blog_id", nullable = false)
+    @JsonBackReference
     private BlogDetail blog;
 
 }
